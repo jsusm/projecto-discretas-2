@@ -1,6 +1,34 @@
 #include <iostream>
+#include <list>
 
 using namespace std;
+
+class Vertex {
+public:
+  bool explored;
+  int id;
+  list<Vertex *> path;
+};
+
+class Edge {
+public:
+  Vertex* A;
+  Vertex* B;
+
+  int weight;
+};
+
+list<Edge*> getEdges(Vertex* v, list<Edge*> edges) {
+  list<Edge*> out;
+
+  for(Edge* edge: edges) {
+    if(edge->A->id == v->id || edge->B->id == v->id) {
+      out.push_back(edge);
+    }
+  }
+
+  return out;
+}
 
 void entrada() {
   int n_bases, n_pipes;
